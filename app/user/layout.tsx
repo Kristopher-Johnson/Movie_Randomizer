@@ -1,6 +1,6 @@
 import React from "react";
 import Randomizer from "./randomizer/page";
-import Navbar from "./navbar/navBar";
+import Navbar from "./navbar/NavBar";
 import Footer from "./footer";
 
 export default function PageLayout({

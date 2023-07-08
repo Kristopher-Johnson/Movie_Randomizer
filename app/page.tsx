@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React, { useState } from "react";
 import LoginPage from "./login/page";
@@ -10,20 +10,14 @@ export default function Home() {
   if (auth == false) {
     return (
       <div>
-        <div>
-          <LoginPage />
-        </div>
+        <LoginPage />
       </div>
     );
   }
 
   //Load Main Page if Authed
   if (auth == true) {
-    return (
-      <div>
-        <div></div>
-      </div>
-    );
+    return <div></div>;
   }
 }
 

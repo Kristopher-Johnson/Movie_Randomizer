@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 // import Logo from "./Logo";
-import NavItem from "./navItem";
+import NavItem from "./NavItem";
 import Link from "next/link";
 import classes from "./NavBar.module.css";
 import Randomizer from "../randomizer/page";

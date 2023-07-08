@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "../components/ui/textField";
+import TextField from "../components/ui/TextField";
 import Link from "next/link";
 
 export default function Register() {
