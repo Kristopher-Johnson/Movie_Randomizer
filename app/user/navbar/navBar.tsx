@@ -28,7 +28,7 @@ export default function Navbar() {
           <div className={classes.nav_items}>
             {/* maps items in MENU_LIST to individual <NavItem/> creating nav bar */}
             {MENU_LIST.map((link, id) => (
-              <div>
+              <div key={id}>
                 <div>
                   {/* passes current url path and link object to nav item */}
                   <NavItem curPage={pathname} {...link} />
