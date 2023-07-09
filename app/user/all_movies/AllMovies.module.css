@@ -5,26 +5,25 @@
 .button {
   margin-top: 5vh;
   margin-left: 5vw;
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
   width: 25vw;
 }
 
 .search {
   margin-top: 5vh;
   margin-left: 5vw;
-  margin-bottom: 5vh;
+  margin-bottom: 6vh;
   width: 25vw;
   color: white;
 }
 .filter {
   margin-top: 5vh;
   margin-right: 5vw;
-  /* margin-left: 0; */
-  /* margin-bottom: 5vh; */
-  width: 15vw;
+  width: 25vw;
   background-color: #1e1e1e;
   color: white;
 }
+
 .button * {
   font-size: 100%;
   font-size: calc(12px + 1.5vw);
@@ -34,11 +33,7 @@
 .search *,
 .filter * {
   border-color: rgba(0, 0, 0, 0.562);
-  /* font-size: 100%; */
-  /* font-weight: 600; */
   font-size: calc(12px + 1vw);
-
-  /* height: 5vw; */
 }
 
 .search_parent {
@@ -58,4 +53,58 @@
 .search_filter {
   display: flex;
   justify-content: space-between;
+}
+
+.add_movie_backdrop {
+  background-color: #0f0f0f;
+  color: white;
+  width: 35%;
+  /* height: 30%; */
+  border: 0.15vw solid black;
+  border-radius: 1vw;
+}
+
+.form {
+  width: 90%;
+  /* height: fit-content; */
+  margin: 5%;
+  /* margin-right: 5%; */
+}
+
+.text_field * {
+  /* background-color: grey; */
+  color: white;
+  border-color: gray;
+  /* width: 100%; */
+}
+.text_field *:hover,
+.text_field *:focus {
+  border-color: white;
+}
+.text_field * {
+  padding-top: 2%;
+}
+
+.label {
+  margin-left: 2%;
+}
+.label * {
+  font-size: 100%;
+}
+.buttons {
+  display: flex;
+}
+
+.buttons div {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.buttons button {
+  /* display: flex; */
+  /* text-align: center; */
+  /* justify-content: space-between; */
 }
