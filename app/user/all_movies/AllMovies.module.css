@@ -85,6 +85,10 @@
   padding-top: 2%;
 }
 
+.grid {
+  grid-auto-rows: 1vw;
+}
+
 .label {
   margin-left: 2%;
 }

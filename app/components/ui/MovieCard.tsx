@@ -17,8 +17,13 @@ const MovieCard = ({
 }) => {
   return (
     <Card sx={{ maxWidth: 350 }}>
-      <CardActionArea>
-        <CardMedia component="img" height="140" image={image} />
+      <CardActionArea className={classes.card}>
+        <CardMedia
+          component="img"
+          height="140"
+          image={image}
+          className={classes["card_media"]}
+        />
         <CardContent className={classes["card_content"]}>
           <Typography
             gutterBottom

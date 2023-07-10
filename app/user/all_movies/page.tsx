@@ -111,13 +111,13 @@ export default function AllMovies() {
     "Thriller",
   ];
 
-  console.log("Rendered");
-
   let MOVIE_NAMES: string[] = [];
 
   const [movieName, setMovieName] = useState("");
   const [watched, setWatched] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
+  console.log(searchQuery);
   MOVIE_LIST.map((Movie) => MOVIE_NAMES.push(Movie.MovieName));
 
   const [open, setOpen] = React.useState(false);
@@ -146,6 +146,8 @@ export default function AllMovies() {
     setMovieName("");
     setWatched(false);
   };
+
+  const searchFilter = (movieName: string) => {};
 
   const handleOpen = () => {
     if (open == true) {
@@ -203,6 +205,10 @@ export default function AllMovies() {
       <div className={classes["search_filter"]}>
         <div>
           <Autocomplete
+            inputValue={searchQuery}
+            onInputChange={(event, newInputValue) => {
+              setSearchQuery(newInputValue);
+            }}
             className={classes.search}
             autoHighlight={true}
             disablePortal
@@ -285,11 +291,13 @@ export default function AllMovies() {
           {MOVIE_LIST.map((Movie) => (
             <div key={Movie.ID}>
               <Grid xs={8}>
-                <MovieItem
-                  movieName={Movie.MovieName}
-                  watched={Movie.Watched}
-                  image={Movie.Image}
-                ></MovieItem>
+                {Movie.MovieName.includes(searchQuery) && (
+                  <MovieItem
+                    movieName={Movie.MovieName}
+                    watched={Movie.Watched}
+                    image={Movie.Image}
+                  ></MovieItem>
+                )}
               </Grid>
             </div>
           ))}

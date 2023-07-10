@@ -1,7 +1,16 @@
+.card {
+  /* border: 1px dotted aqua; */
+}
+
+.card_media {
+  height: 350px;
+  /* width: 500px; */
+}
+
 .card_content {
   background-color: #1e1e1e;
   padding-bottom: 0.1vh;
-  /* width: 10vw; */
+  height: 100px;
 }
 
 .typography {
