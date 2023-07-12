@@ -1,14 +1,12 @@
 "use client";
 
 import React from "react";
-import MovieItem from "./MovieItem";
 import Grid from "@mui/material/Unstable_Grid2";
 import Button from "../../components/ui/Button";
 import classes from "./AllMovies.module.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
@@ -17,14 +15,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
 import { useState } from "react";
 import MOVIE_LIST from "../../Data/MovieList";
+import MovieListRenderer from "./MovieListRenderer";
+import AccordianRenderer from "./AccordianRenderer";
+import SearchRenderer from "./SearchRenderer";
 
 export default function AllMovies() {
   const GENRES: string[] = [
@@ -132,116 +129,22 @@ export default function AllMovies() {
       </div>
       <div className={classes["search_filter"]}>
         <div>
-          <Autocomplete
-            inputValue={searchQuery}
-            noOptionsText={"No Suggestions Were Found!"}
-            onInputChange={(event, newInputValue) => {
-              setSearchQuery(newInputValue);
-            }}
-            className={classes.search}
-            autoHighlight={true}
-            disablePortal
-            id="combo-box"
-            options={MOVIE_NAMES}
-            PaperComponent={({ children }) => (
-              <Paper style={{ background: "#1e1e1e", color: "white" }}>
-                {children}
-              </Paper>
-            )}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Search" />}
+          <SearchRenderer
+            MOVIE_NAMES={MOVIE_NAMES}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
           />
         </div>
         <div>
-          <Accordion
-            className={classes.filter}
-            TransitionProps={{ unmountOnExit: true }}
-            style={{
-              zIndex: 1,
-              // position: "absolute",
-              marginRight: "5vw",
-              marginTop: "5vh",
-              padding: "0",
-              // width: "100%",
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Filter</Typography>
-            </AccordionSummary>
-            <AccordionDetails
-              style={{
-                zIndex: 1,
-                position: "absolute",
-                marginTop: "0",
-                marginBottom: "0",
-                padding: "0",
-                backgroundColor: "#1e1e1e",
-              }}
-            >
-              <RadioGroup
-                onChange={(e) => setFilterQuery(e.target.value)}
-                defaultValue="All"
-              >
-                <FormControlLabel
-                  value="All"
-                  control={<Radio />}
-                  label="All"
-                  style={{
-                    paddingLeft: "1vw",
-                  }}
-                />
-                <Grid
-                  container
-                  spacing={1}
-                  style={{
-                    marginLeft: "1vw",
-                  }}
-                >
-                  {GENRES.map((genre) => (
-                    <FormControlLabel
-                      key={genre}
-                      value={genre}
-                      control={<Radio />}
-                      label={genre}
-                      style={{ paddingRight: "2vw" }}
-                    />
-                  ))}
-                </Grid>
-              </RadioGroup>
-
-              <div></div>
-            </AccordionDetails>
-          </Accordion>
+          <AccordianRenderer GENRES={GENRES} setFilterQuery={setFilterQuery} />
         </div>
       </div>
       <div className={classes["movie_item"]}>
-        <Grid container spacing={2}>
-          {MOVIE_LIST.map((Movie) => (
-            <div key={Movie.ID}>
-              <Grid xs={8}>
-                {filterQuery == "All" && Movie.Genre.includes(filterQuery) ? (
-                  <MovieItem
-                    movieName={Movie.MovieName}
-                    watched={Movie.Watched}
-                    image={Movie.Image}
-                  ></MovieItem>
-                ) : (
-                  Movie.MovieName.includes(searchQuery) && (
-                    <MovieItem
-                      movieName={Movie.MovieName}
-                      watched={Movie.Watched}
-                      image={Movie.Image}
-                    ></MovieItem>
-                  )
-                )}
-              </Grid>
-            </div>
-          ))}
-        </Grid>
+        <MovieListRenderer
+          MOVIE_LIST={MOVIE_LIST}
+          filterQuery={filterQuery}
+          searchQuery={searchQuery}
+        />
       </div>
     </div>
   );
