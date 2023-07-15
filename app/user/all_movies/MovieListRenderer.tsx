@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import MovieItem from "./MovieItem";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import MOVIE_LIST from "../../Data/MovieList";
@@ -16,29 +16,36 @@ interface props {
 }
 
 const MovieListRenderer = ({ MOVIE_LIST, filterQuery, searchQuery }: props) => {
-  return (
-    <Grid container spacing={2}>
-      {MOVIE_LIST.map((Movie) => (
-        <div key={Movie.ID}>
-          <Grid xs={8}>
-            {filterQuery == "All" && Movie.Genre.includes(filterQuery) ? (
+  console.log(filterQuery);
+  console.log(searchQuery);
+
+  function filteredResult() {
+    return MOVIE_LIST.map((Movie) => (
+      <div key={Movie.ID}>
+        <Grid xs={8}>
+          {filterQuery == "All" && Movie.Genre.includes(filterQuery) ? (
+            <MovieItem
+              movieName={Movie.MovieName}
+              watched={Movie.Watched}
+              image={Movie.Image}
+            ></MovieItem>
+          ) : (
+            Movie.MovieName.includes(searchQuery) && (
               <MovieItem
                 movieName={Movie.MovieName}
                 watched={Movie.Watched}
                 image={Movie.Image}
               ></MovieItem>
-            ) : (
-              Movie.MovieName.includes(searchQuery) && (
-                <MovieItem
-                  movieName={Movie.MovieName}
-                  watched={Movie.Watched}
-                  image={Movie.Image}
-                ></MovieItem>
-              )
-            )}
-          </Grid>
-        </div>
-      ))}
+            )
+          )}
+        </Grid>
+      </div>
+    ));
+  }
+
+  return (
+    <Grid container spacing={2}>
+      {filteredResult()}
     </Grid>
   );
 };

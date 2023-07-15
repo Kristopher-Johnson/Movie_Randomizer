@@ -1,19 +1,10 @@
 "use client";
 
 import React from "react";
-import Grid from "@mui/material/Unstable_Grid2";
 import Button from "../../components/ui/Button";
 import classes from "./AllMovies.module.css";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Backdrop from "@mui/material/Backdrop";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
@@ -39,7 +30,7 @@ export default function AllMovies() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterQuery, setFilterQuery] = useState("All");
 
-  console.log(searchQuery);
+  // console.log(searchQuery);
   MOVIE_LIST.map((Movie) => MOVIE_NAMES.push(Movie.MovieName));
 
   const [open, setOpen] = React.useState(false);
@@ -51,9 +42,9 @@ export default function AllMovies() {
   const saveMovieHandler = (event: any) => {
     event.preventDefault();
     let index: number = MOVIE_LIST.length + 1;
-    console.log(index);
-    console.log(movieName);
-    console.log(watched);
+    // console.log(index);
+    // console.log(movieName);
+    // console.log(watched);
     MOVIE_LIST.push({
       ID: index.toString(),
       MovieName: movieName,
@@ -63,7 +54,7 @@ export default function AllMovies() {
       Genre: [],
     });
 
-    console.log(MOVIE_LIST);
+    // console.log(MOVIE_LIST);
 
     handleClose();
     setMovieName("");
@@ -118,7 +109,7 @@ export default function AllMovies() {
 
   const addMovie = () => {
     setOpen(true);
-    console.log("Clicked");
+    // console.log("Clicked");
   };
 
   return (
