@@ -22,21 +22,21 @@ const MOVIE_LIST = [
     MovieName: "Harry Potter and the Chamber of Secrets",
     Watched: false,
     Image: "https://m.media-amazon.com/images/I/71e0pu5UN9L._AC_SY445_.jpg",
-    Genre: ["Adventure", "Sci-fi"],
+    Genre: ["Horrer", "Sci-fi"],
   },
   {
     ID: "3",
     MovieName: "Harry Potter and the Prisoner of Azkaban",
     Watched: false,
     Image: "https://m.media-amazon.com/images/I/A12o-S9zoFL._AC_SL1500_.jpg",
-    Genre: ["Adventure", "Sci-fi"],
+    Genre: ["Adventure", "Action"],
   },
   {
     ID: "4",
     MovieName: "Harry Potter and the Goblet of Fire",
     Watched: false,
     Image: "https://m.media-amazon.com/images/I/71FEzkMssCL._AC_SL1298_.jpg",
-    Genre: ["Adventure", "Sci-fi"],
+    Genre: ["Adventure", "Romance"],
   },
   {
     ID: "5",
@@ -44,7 +44,7 @@ const MOVIE_LIST = [
     Watched: false,
     Image:
       "https://m.media-amazon.com/images/M/MV5BOTA3MmRmZDgtOWU1Ny00ZDc5LWFkN2YtNzNlY2UxZmY0N2IyXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg",
-    Genre: ["Adventure", "Sci-fi"],
+    Genre: ["Adventure", "Comedy"],
   },
   {
     ID: "6",
@@ -86,7 +86,7 @@ const MOVIE_LIST = [
     MovieName: "Harry Potter and the Deathly Hallows: Part 5",
     Watched: false,
     Image: "https://m.media-amazon.com/images/I/91RXPJU4XZL._AC_SL1500_.jpg",
-    Genre: ["Adventure", "Sci-fi"],
+    Genre: ["Adventure", "Fantasy"],
   },
   {
     ID: "12",
@@ -98,3 +98,4 @@ const MOVIE_LIST = [
 ];
 
 export default MOVIE_LIST;
+// export const GENRES;

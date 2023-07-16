@@ -67,13 +67,17 @@ const AccordianRenderer = ({ GENRES, setFilterQuery }: props) => {
             }}
           >
             {GENRES.map((genre) => (
-              <FormControlLabel
-                key={genre}
-                value={genre}
-                control={<Radio />}
-                label={genre}
-                style={{ paddingRight: "2vw" }}
-              />
+              <>
+                {!(genre == "All") && (
+                  <FormControlLabel
+                    key={genre}
+                    value={genre}
+                    control={<Radio />}
+                    label={genre}
+                    style={{ paddingRight: "2vw" }}
+                  />
+                )}
+              </>
             ))}
           </Grid>
         </RadioGroup>

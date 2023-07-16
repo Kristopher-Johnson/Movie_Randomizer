@@ -13,16 +13,9 @@ import MOVIE_LIST from "../../Data/MovieList";
 import MovieListRenderer from "./MovieListRenderer";
 import AccordianRenderer from "./AccordianRenderer";
 import SearchRenderer from "./SearchRenderer";
+import GENRES from "../../Data/Genres";
 
 export default function AllMovies() {
-  const GENRES: string[] = [
-    "Horror",
-    "Action",
-    "Sci-fi",
-    "Fantasy",
-    "Thriller",
-  ];
-
   let MOVIE_NAMES: string[] = [];
 
   const [movieName, setMovieName] = useState("");
