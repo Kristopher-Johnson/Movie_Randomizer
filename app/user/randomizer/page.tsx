@@ -11,29 +11,35 @@ import TextField from "@mui/material/TextField";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import Snackbar from "@mui/material/Snackbar";
+
+const WATCHED_RADIO_LIST = ["Not Watched", "All"];
 
 export default function Randomizer() {
   const [isRandomized, setIsRandomized] = useState(false);
   const [notWatched, setNotWatched] = useState("Not Watched");
   const [genre, setGenre] = useState("All");
   const [numberOfMovies, setNumberOfMovies] = useState("3");
+  const [isValid, setIsValid] = useState(true);
 
-  // console.log(isRandomized);
-  // console.log(notWatched);
-  // console.log(genre);
-  // console.log(numberOfMovies);
-  const WATCHED_RADIO_LIST = ["Not Watched", "All"];
+  const [open, setOpen] = React.useState(false);
 
-  function isValid() {
+  console.log(isValid);
+  console.log(open);
+
+  function handleClose() {
+    setIsValid(true);
+  }
+
+  function isValidHandler() {
     console.log(numberOfMovies);
     if (numberOfMovies == "" || numberOfMovies == "0") {
       console.log("not valid");
-      return (
-        <div className={classes.main}>
-          <h1>This</h1>
-        </div>
-      );
+      if (isValid) {
+        setIsValid(false);
+      }
     } else {
+      setIsValid(true);
       setIsRandomized(true);
     }
   }
@@ -41,8 +47,14 @@ export default function Randomizer() {
   function notRandomized() {
     return (
       <div className={classes.main}>
+        <Snackbar open={!isValid} autoHideDuration={5000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            Please enter how many movies you want to display.
+          </Alert>
+        </Snackbar>
+
         <div className={classes["button_div"]}>
-          <Button onClick={isValid}>Randomize</Button>
+          <Button onClick={isValidHandler}>Randomize</Button>
         </div>
 
         <div className={classes["radio_div_1"]}>
