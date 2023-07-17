@@ -99,10 +99,31 @@
   grid-row-gap: 0px;
 }
 
+/* .randomized_grid {
+  display: flex;
+} */
+
 .randomized_list {
-  grid-area: 1 / 1 / 6 / 4;
+  margin-top: 130px;
+  width: 1500px;
+  grid-area: 1 / 2 / 6 / 4;
 }
+
+.randomized_grid {
+  display: flex;
+  justify-content: center;
+}
+
 .re_randomize {
   grid-area: 1 / 5 / 3 / 6;
   margin-right: 150px;
+}
+
+.card {
+  width: 270px;
+  margin: 30px;
+}
+
+.card div {
+  height: fit-content;
 }

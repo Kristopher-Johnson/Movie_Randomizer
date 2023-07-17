@@ -22,7 +22,7 @@ const MOVIE_LIST = [
     MovieName: "Harry Potter and the Chamber of Secrets",
     Watched: false,
     Image: "https://m.media-amazon.com/images/I/71e0pu5UN9L._AC_SY445_.jpg",
-    Genre: ["Horrer", "Sci-fi"],
+    Genre: ["Horror", "Sci-fi"],
   },
   {
     ID: "3",
@@ -34,7 +34,7 @@ const MOVIE_LIST = [
   {
     ID: "4",
     MovieName: "Harry Potter and the Goblet of Fire",
-    Watched: false,
+    Watched: true,
     Image: "https://m.media-amazon.com/images/I/71FEzkMssCL._AC_SL1298_.jpg",
     Genre: ["Adventure", "Romance"],
   },
