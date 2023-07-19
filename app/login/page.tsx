@@ -25,6 +25,7 @@ export default function Login() {
               <Button>Login</Button>
             </Link>
           </div>
+
           <div className={classes["button-2"]}>
             <Link href={"/register"}>
               <Button>Register</Button>
