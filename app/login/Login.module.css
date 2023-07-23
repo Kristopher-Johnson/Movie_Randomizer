@@ -41,6 +41,13 @@
   font-size: 1vw;
 }
 
+.div1 * input,
+.div2 * input {
+  height: 10px;
+  color: white;
+  /* background-color: white; */
+}
+
 .div3 {
   display: flex;
   justify-content: center;

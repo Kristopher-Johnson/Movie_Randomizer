@@ -1,0 +1,14 @@
+.page_center {
+  display: flex;
+  justify-content: center;
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15vh;
+  background-color: rgb(48, 47, 47);
+  padding: 2vw 3vw 3vw 3vw;
+  border-radius: 2vw;
+  border: solid black 0.15vw;
+}
