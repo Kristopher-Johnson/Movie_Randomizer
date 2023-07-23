@@ -7,19 +7,19 @@ export default function Register() {
     <div>
       <div>
         <h1>Username</h1>
-        <TextField />
+        <TextField inputID={"input1"} />
       </div>
       <div>
         <h1>Email</h1>
-        <TextField />
+        <TextField inputID={"input2"} />
       </div>
       <div>
         <h1>Password</h1>
-        <TextField />
+        <TextField inputID={"input3"} />
       </div>
       <div>
         <h1>Repeat Password</h1>
-        <TextField />
+        <TextField inputID={"input4"} />
       </div>
       <div>
         <Link href={"/user/randomizer"}>

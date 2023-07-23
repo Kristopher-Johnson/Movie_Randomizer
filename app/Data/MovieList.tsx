@@ -1,13 +1,3 @@
-// interface MOVIE_LIST {
-//   [{}
-//     ID: string,
-//     MovieName: string,
-//     Watched: boolean,
-//     Image: string,
-//     Genre: [string],
-//   ];
-// }
-
 const MOVIE_LIST = [
   {
     ID: "1",
