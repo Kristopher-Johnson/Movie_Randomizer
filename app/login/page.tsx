@@ -8,9 +8,9 @@ import Button from "../components/ui/Button";
 
 import { doc, collection, addDoc, getDoc, getDocs } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
-import app from "../../firebase";
+import { app, db } from "../../firebase";
 
-const db = getFirestore(app);
+// const db = getFirestore(app);
 
 // async function addUser(
 //   email: string,

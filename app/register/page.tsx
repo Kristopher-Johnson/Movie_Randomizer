@@ -3,47 +3,54 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { doc, collection, addDoc, getDoc, getDocs } from "firebase/firestore";
 import Button from "../components/ui/Button";
 import classes from "./Register.module.css";
 import validator from "validator";
-import app from "../../firebase";
+import { app, auth, db } from "../../firebase";
 import { getFirestore } from "firebase/firestore";
 
 export default function Register() {
-  const auth = getAuth(app);
-  const db = getFirestore(app);
+  // const auth = getAuth(app);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
   //Adds user to user database and firebase authentication database
+
   async function registerUser(
     email: string,
     username: string,
     password: string
   ) {
     try {
-      const docRef = await addDoc(collection(db, "users"), {
-        username: { username },
-        email: { email },
-        movieList: [],
-      });
-      console.log("User added with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding user");
+      await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
+        console.log(err)
+      );
+      if (auth.currentUser != null) {
+        await sendEmailVerification(auth.currentUser).catch((err) =>
+          console.log(err)
+        );
+        await updateProfile(auth.currentUser, { displayName: username }).catch(
+          (err) => console.log(err)
+        );
+        const docRef = await addDoc(collection(db, "users"), {
+          username: { username },
+          email: { email },
+          movieList: [],
+        });
+        console.log("User added with ID: ", docRef.id);
+      }
+    } catch (err) {
+      console.log(err);
     }
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
   }
 
   function validUsername(username: string) {
@@ -51,21 +58,29 @@ export default function Register() {
   }
 
   function validPassword(password: string, repeatPassword: string) {
-    validator.isStrongPassword("minLength: 8");
+    if (password != repeatPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    if (password.length < 8) {
+      alert("Passwords must be atleast 8 charactors");
+      return;
+    }
+    console.log("Valid Password");
     return true;
   }
 
   function validateEmail(email: string) {
     if (validator.isEmail(email)) {
-      // userSignInMethods.length > 0;
-
+      console.log("Valid Email");
       return true;
     } else {
       return false;
     }
   }
 
-  function onClickRegisterHandler() {
+  function onSubmitHandler(event: any) {
+    event.preventDefault();
     if (
       email != "" &&
       password != "" &&
@@ -86,7 +101,7 @@ export default function Register() {
 
   return (
     <div className={classes["page_center"]}>
-      <form className={classes["parent"]}>
+      <form onSubmit={onSubmitHandler} className={classes["parent"]}>
         <div>
           <h1>Username</h1>
           <TextField onChange={(e) => setUsername(e.target.value)} />
@@ -105,7 +120,7 @@ export default function Register() {
         </div>
         <div>
           <div>
-            <Button onClick={onClickRegisterHandler}>Register</Button>
+            <Button type="submit">Register</Button>
           </div>
           <div>
             <Link href={"/"}>
