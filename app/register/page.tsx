@@ -17,7 +17,6 @@ import { app, auth, db } from "../../firebase";
 import { getFirestore } from "firebase/firestore";
 
 export default function Register() {
-  // const auth = getAuth(app);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,15 +30,19 @@ export default function Register() {
     password: string
   ) {
     try {
-      await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-        console.log(err)
+      await createUserWithEmailAndPassword(auth, email, password).catch(
+        (err) => {
+          console.log(err);
+        }
       );
       if (auth.currentUser != null) {
-        await sendEmailVerification(auth.currentUser).catch((err) =>
-          console.log(err)
-        );
+        await sendEmailVerification(auth.currentUser).catch((err) => {
+          console.log(err);
+        });
         await updateProfile(auth.currentUser, { displayName: username }).catch(
-          (err) => console.log(err)
+          (err) => {
+            console.log(err);
+          }
         );
         const docRef = await addDoc(collection(db, "users"), {
           username: { username },
@@ -88,9 +91,9 @@ export default function Register() {
       username != ""
     ) {
       if (
+        validUsername(username) &&
         validateEmail(email) &&
-        validPassword(password, repeatPassword) &&
-        validUsername(username)
+        validPassword(password, repeatPassword)
       ) {
         registerUser(email, username, password);
       }
@@ -102,27 +105,30 @@ export default function Register() {
   return (
     <div className={classes["page_center"]}>
       <form onSubmit={onSubmitHandler} className={classes["parent"]}>
-        <div>
+        <div className={classes["title"]}>
+          <h1>Movie Randomizer</h1>
+        </div>
+        <div className={classes["div1"]}>
           <h1>Username</h1>
           <TextField onChange={(e) => setUsername(e.target.value)} />
         </div>
-        <div>
+        <div className={classes["div1"]}>
           <h1>Email</h1>
           <TextField onChange={(e) => setEmail(e.target.value)} />
         </div>
-        <div>
+        <div className={classes["div1"]}>
           <h1>Password</h1>
           <TextField onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <div>
+        <div className={classes["div1"]}>
           <h1>Repeat Password</h1>
           <TextField onChange={(e) => setRepeatPassword(e.target.value)} />
         </div>
-        <div>
-          <div>
+        <div className={classes["div3"]}>
+          <div className={classes["button-1"]}>
             <Button type="submit">Register</Button>
           </div>
-          <div>
+          <div className={classes["button-2"]}>
             <Link href={"/"}>
               <Button>Sign in</Button>
             </Link>
